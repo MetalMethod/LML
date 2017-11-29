@@ -1,3 +1,10 @@
+'''
+Igor Busquets LML 28/11/2017
+Simple Linear Regression 
+my very first machine learing model
+
+'''
+
 # Data Preprocessing Template
 
 # Importing the libraries
@@ -43,7 +50,38 @@ regressor.fit(X_train, y_train)
 #value of predicted salaries
 #X is matrix of features
 #y_pred is convention for naming the future desirable(independent variable) value
+# y_pred are predictions of the TEST TEST
 y_pred = regressor.predict(X_test)
+
+#######Visualizing the training results
+# import matplotlib.pyplot as plt
+#x experience
+#y salary
+# observation red
+# regression blue
+plt.scatter(X_train, y_train, color = 'red')
+
+#predictions salaries of the trainingset
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+
+plt.title('Salary vs Experience (Training set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
+
+#predictions salaries of the testset
+#coordinates of observation
+plt.scatter(X_test, y_test, color = 'red')
+
+#blue regression line 
+#must be X_train so it compares to the regression
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Salary vs Experience (Test set)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary')
+plt.show()
+
+
 
 
 
