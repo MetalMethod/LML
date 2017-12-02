@@ -48,5 +48,80 @@ X_test = sc_X.transform(X_test)
 sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)"""
 
+########Fiting the mulitple linear regressor to the training dataset
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+
+#Fit to the dataset
+regressor.fit(X_train, y_train)
 
 
+##### VECTOR PREDICTIONS
+y_pred = regressor.predict(X_test)
+
+####### OPTIMIZATION
+import statsmodels.formula.api as sn
+#add constant b0 from equasion of multiple regression to matrix of features X
+# add a rray of 50 lines and one column
+#ones(returns a  matrix of one column of 1 ) - first parameter is shape, that in this case is 
+#a matrix, so it requires its size of 50 lines and 1 column
+#requires cast to int
+#append aad a column to the end so the trick is to add X
+X = numpy.append(arr = numpy.ones(([50, 1])).astype(int), values = X,  axis = 1 )
+
+###Backward elimination
+#Optimal matrix of features, only contain dependeble with high impact
+#remove the not relevant statiscaly
+#initialize the result matrix with its columns indexes
+X_opt = X[:, [0,1,2,3,4,5]]
+
+## STEP 2 FIT the regressor to the X_opt
+regressor_OLS = sn.OLS(endog = y, exog = X_opt).fit()
+
+#STEP 3 look for y_pred with highest P value
+regressor_OLS.summary()
+
+#STEP 4 look for highest P value (wich is bad) and remove it
+X_opt = X[:, [0,1,3,4,5]]
+
+#STEP 5 FIT model without this highest P value variable
+regressor_OLS = sn.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+#HOMEWORK
+# remove all columns with P > 0.05
+#STEP 3 and 4 look for highest P value (wich is bad) and remove it
+X_opt = X[:, [0,3,4,5]]
+
+#STEP 5 FIT model without this highest P value variable
+regressor_OLS = sn.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+#STEP 3 and 4 look for highest P value (wich is bad) and remove it
+X_opt = X[:, [0,3,5]]
+
+#STEP 5 FIT model without this highest P value variable
+regressor_OLS = sn.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+#STEP 3 and 4 look for highest P value (wich is bad) and remove it
+X_opt = X[:, [0,3]]
+
+#STEP 5 FIT model without this highest P value variable
+regressor_OLS = sn.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+
+## trying of prediction
+#y_pred_OLS = regressor_OLS.predict(X_test)
+
+#######predictions vs testset
+######coordinates of observation
+#plt.scatter(X_test, X_test, color = 'red')
+
+#######blue regression line 
+#####must be X_train so it compares to the regression
+#plt.plot(X_train, X_opt, color = 'blue')
+#plt.title('Possibel Profit vs investments (Test set)')
+#plt.xlabel('Investments')
+#plt.ylabel('Profit')
+#plt.show()
