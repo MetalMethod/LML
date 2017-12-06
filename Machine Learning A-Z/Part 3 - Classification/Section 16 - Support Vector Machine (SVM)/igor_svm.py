@@ -34,10 +34,11 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
-#### SVM classifier
-from sklearn.svm import svc
-
-classifier = 
+#### SVM classifier (this is linear because of the kernel chosen)
+from sklearn.svm import SVC
+#kernel = linear kernel, a linear classifier
+classifier = SVC(kernel = 'linear', random_state = 0)
+classifier.fit(X_train, y_train)
 
 ########Prediction X_test set using classifier
 # vector of each prediction
@@ -45,18 +46,16 @@ y_pred = classifier.predict(X_test)
 
 #### EVALUATING THE MODEL
 #Making Confusion Matrix - correct predictios + incorrect predictions
-from sklearn.metrics import confusion_matrix
 #params : y_true: value of y for true - y_pred = predictions
 cm = confusion_matrix(y_test ,y_pred)
 #cm is a confusion matrix, based on the test set, both 65 and 24 are the correct predicts, the other lower (11) values are the wrong ones
 
-'''
-####### Visualizing the training dataset
+####### Visualizing the test dataset
 #users are not linear distributed but he classifier is so the separator is a line and wont be 100% perfect
 #green is purchase, red is not. Points are real users
 from matplotlib.colors import ListedColormap
 # data set aliases so replacing datasets becames easy
-x_set, y_set = X_train, y_train
+x_set, y_set = X_test, y_test
 
 #prepare the grid: each pixel is a user of the example
 # -1 minimal values of X and +1 maximum values of X-....same salary ... defines the range of pixels in the range
@@ -83,4 +82,3 @@ plt.xlabel('')
 plt.ylabel('')
 plt.legend()
 plt.show()
-'''
