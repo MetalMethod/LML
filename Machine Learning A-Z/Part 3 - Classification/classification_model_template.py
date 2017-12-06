@@ -1,8 +1,8 @@
-"""
+'''
 Igor Busquets LML
-"""
+'''
 
-#Logistic Regression Classification Model
+#Classification Template
 
 # Importing the libraries
 import numpy as np
@@ -15,12 +15,12 @@ from sklearn.metrics import confusion_matrix
 #######DATA PREPOCESSING
 
 # Importing the dataset
-dataset = pd.read_csv('Social_Network_ads.csv')
+dataset = pd.read_csv('FILE.csv')
 
-#Matrix of features are only Age and salary
+#Matrix of features: select the right field columns
 X = dataset.iloc[:, [2, 3]].values
 
-#dependent variable if they made purchase or not
+#dependent variable
 y = dataset.iloc[:, 4].values
 
 # Splitting the dataset into the Training set and Test set
@@ -35,11 +35,11 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 #######Fitting Logistic Regression to the Training set
-#These 3 next code lines are the real Logistic Regression
+
 #from sklearn.linear_model import LogisticRegression
-#create a classifier (linear)
-classifier = LogisticRegression(random_state = 0)
-classifier.fit(X_train,  y_train)
+#create the classifier here
+
+#classifier = 
 
 ########Prediction X_test set using classifier
 # vector of each prediction
@@ -47,11 +47,12 @@ y_pred = classifier.predict(X_test)
 
 #### EVALUATING THE MODEL
 #Making Confusion Matrix - correct predictios + incorrect predictions
-#from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix
 #params : y_true: value of y for true - y_pred = predictions
 cm = confusion_matrix(y_test ,y_pred)
 #cm is a confusion matrix, based on the test set, both 65 and 24 are the correct predicts, the other lower (11) values are the wrong ones
 
+'''
 ####### Visualizing the training dataset
 #users are not linear distributed but he classifier is so the separator is a line and wont be 100% perfect
 #green is purchase, red is not. Points are real users
@@ -79,42 +80,9 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j,0], x_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
 
-plt.title('Logistic Regression (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
+plt.title('')
+plt.xlabel('')
+plt.ylabel('')
 plt.legend()
 plt.show()
-
-
-####### Visualizin the test dateset
-#users are not linear distributed but he classifier is so the separator is a line and wont be 100% perfect
-#green is purchase, red is not. Points are real users
-from matplotlib.colors import ListedColormap
-# data set aliases so replacing datasets becames easy
-x_set, y_set = X_test, y_test
-
-#prepare the grid: each pixel is a user of the example
-# -1 minimal values of X and +1 maximum values of X-....same salary ... defines the range of pixels in the range
-# 0.01 is the  resolution of the pixel points, smaller is more pixels
-x1, x2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 1, stop = x_set[:, 0].max() + 1, step = 0.01),
-                     np.arange(start = x_set[:, 1].min() - 1, stop = x_set[:, 1].max() + 1, step = 0.01))
-
-#apply the classifier to all pixel of the region points
-#draw the regions of separation of prediction areas classifying each pixel
-plt.contourf(x1, x2, classifier.predict(np.array([x1.ravel(), x2.ravel()]).T).reshape(x1.shape),
-            alpha = 0.55, cmap = ListedColormap(('red', 'green')))
-
-#defines the limits of areas
-plt.xlim(x1.min(), x1.max())
-plt.ylim(x2.min(), x2.max())
-
-#draw the real data points (red and green point)
-for i, j in enumerate(np.unique(y_set)):
-    plt.scatter(x_set[y_set == j,0], x_set[y_set == j, 1],
-                c = ListedColormap(('red', 'green'))(i), label = j)
-
-plt.title('Logistic Regression (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
-plt.legend()
-plt.show()
+'''
