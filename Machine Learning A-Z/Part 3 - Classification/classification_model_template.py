@@ -10,12 +10,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 #######DATA PREPOCESSING
 
 # Importing the dataset
-dataset = pd.read_csv('FILE.csv')
+dataset = pd.read_csv('Social_Network_Ads.csv')
 
 #Matrix of features: select the right field columns
 X = dataset.iloc[:, [2, 3]].values
