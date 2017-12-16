@@ -4,7 +4,6 @@ Igor Busquets LML
 
 #Random Forest Classification
 
-
 # Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,15 +27,22 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
 # Feature Scaling
-#y does not require scaling
+#does not require scaling
+#ONLY REQUIRED FOR PLOT RESOLUTION
 #from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 #####CREATE RANDOM FOREST CLASSIFIER
+from sklearn.ensemble import RandomForestClassifier
+#params: n_estimators = numeber of tree
+#entropy the higher the entropy, the higher the disorder
+#lower entropy is better
+#
+classifier = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
+classifier.fit(X_train, y_train)
 
-#classifier = 
 
 ########Prediction X_test set using classifier
 # vector of each prediction
@@ -44,18 +50,18 @@ y_pred = classifier.predict(X_test)
 
 #### EVALUATING THE MODEL
 #Making Confusion Matrix - correct predictios + incorrect predictions
-from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import confusion_matrix
 #params : y_true: value of y for true - y_pred = predictions
 cm = confusion_matrix(y_test ,y_pred)
 #cm is a confusion matrix, based on the test set, both 65 and 24 are the correct predicts, the other lower (11) values are the wrong ones
 
-'''
-####### Visualizing the training dataset
+
+####### Visualizing the test dataset
 #users are not linear distributed but he classifier is so the separator is a line and wont be 100% perfect
 #green is purchase, red is not. Points are real users
 from matplotlib.colors import ListedColormap
 # data set aliases so replacing datasets becames easy
-x_set, y_set = X_train, y_train
+x_set, y_set = X_test, y_test
 
 #prepare the grid: each pixel is a user of the example
 # -1 minimal values of X and +1 maximum values of X-....same salary ... defines the range of pixels in the range
@@ -82,4 +88,3 @@ plt.xlabel('')
 plt.ylabel('')
 plt.legend()
 plt.show()
-'''
