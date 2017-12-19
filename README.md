@@ -4,4 +4,4 @@
 
  First course: 
  Machine Learning A-Z 
- (from Udemy and SuperDataScience: https://www.superdatascience.com/machine-learning/)
+ (from Udemy: https://www.superdatascience.com/machine-learning/)
