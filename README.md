@@ -1,6 +1,7 @@
 # LML
 
- My personal journey into Learing Machine Learning.
+ My personal journey into Learning Machine Learning.
 
- First course is: Machine Learning A-Z 
- from Udemy and SuperDataScience: https://www.superdatascience.com/machine-learning/
+ First course: 
+ Machine Learning A-Z 
+ (from Udemy: https://www.superdatascience.com/machine-learning/)
