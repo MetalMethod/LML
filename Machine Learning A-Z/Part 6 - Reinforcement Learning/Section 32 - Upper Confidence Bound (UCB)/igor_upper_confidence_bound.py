@@ -48,6 +48,7 @@ d = 10
 ads_selected = []  
 numbers_of_selections = [0] * d
 sums_of_rewards = [0] * d
+total_reward = 0
 
 #step 2
 for n in range(0, N):
@@ -57,7 +58,6 @@ for n in range(0, N):
     for i in range(0, d):
         
         if(numbers_of_selections[i] > 0):
-        #crap the videos code gives zero division erro
             average_reward = sums_of_rewards[i] / numbers_of_selections[i]
             #square root and log from math formula
             # index python is 0 so add  n + 1
@@ -65,19 +65,32 @@ for n in range(0, N):
             uppper_bound = average_reward + delta_i
         else:
             #1 to power of 400, very large number
+            #why use this big number
+            
             uppper_bound = 1e400
     #step 3
         #create vector of all versions of ads
         if uppper_bound > max_upper_bound:
             max_upper_bound = uppper_bound
             ad = i
-            
-
+    
+    ads_selected.append(ad)
+    numbers_of_selections[ad] = numbers_of_selections[ad] + 1
+    reward = dataset.values[n,  ad]
+    sums_of_rewards[ad] = sums_of_rewards[ad] + reward
+    total_reward = total_reward + reward
+        
+#ads_selected is the result
+#total reward is almost double than random
         
 
-        
-        
-        
+#####VIsulalising the results - Histogram
+plt.hist(ads_selected)
+plt.title('Histogram of ads selections')
+plt.xlabel('Ads')
+plt.ylabel('Number of times each Ad was selected')
+plt.show()
+
         
         
         
