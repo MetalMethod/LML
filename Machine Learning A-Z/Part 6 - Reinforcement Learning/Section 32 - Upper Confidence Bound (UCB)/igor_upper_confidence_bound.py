@@ -82,7 +82,6 @@ for n in range(0, N):
         
 #ads_selected is the result
 #total reward is almost double than random
-        
 
 #####VIsulalising the results - Histogram
 plt.hist(ads_selected)
@@ -91,10 +90,6 @@ plt.xlabel('Ads')
 plt.ylabel('Number of times each Ad was selected')
 plt.show()
 
-        
-        
-        
-        
-        
+
         
         
