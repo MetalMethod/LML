@@ -76,12 +76,15 @@ for n in range(0, N):
     
     ads_selected.append(ad)
     numbers_of_selections[ad] = numbers_of_selections[ad] + 1
+
     reward = dataset.values[n,  ad]
     sums_of_rewards[ad] = sums_of_rewards[ad] + reward
+
     total_reward = total_reward + reward
         
 #ads_selected is the result
 #total reward is almost double than random
+
 
 #####VIsulalising the results - Histogram
 plt.hist(ads_selected)
