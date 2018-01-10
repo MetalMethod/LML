@@ -24,7 +24,7 @@ Igor Busquets LML
 # DEPENDENCIES
 import tensorflow as af
 import theano as th
-import keras as kr
+import keras
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -60,10 +60,57 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
+# ARTIFICIAL NEURAL NETWORK IMPLEMENTATION
+#Sequencial - Initializes the Neural Network
+from keras.models import Sequential
+#Dense - Build the layers of the ANN
+from keras.layers import Dense
 
-# Fitting classifier to the Training set
-# Create your classifier here
+#Initializes th ANN
+classifier = Sequential()
 
+#Add input and first hidden layers
+#theres 11 inputs X and only 1 output y
+#output_dim = number of nodes in the layer  = avg of input x and output y so avg(1,11)=6
+#input_dim is compulsory to first layer onlym, because it doesnt know how many X it will recieve
+classifier.add(Dense(output_dim = 6, init='uniform', activation = 'relu', input_dim = 11))
+
+#Add second hidden layer
+classifier.add(Dense(output_dim = 6, init='uniform', activation = 'relu'))
+
+#Add the output layer
+classifier.add(Dense(output_dim = 1, init='uniform', activation = 'sigmoid'))
+
+#Complle the ANN = Apply Stochastic Gradient Descent
+#adam = type of Stochastic Gradient Descent
+# loss = same as logistic regression - logaritic loss 
+#metrics = crteria for evaluate model, criteria is accuracy...a array is expected
+classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'] )
+
+
+#Initializes random weights close to 0
+
+#Input layer will have 11 input nodes
+
+#Activation function Relu
+
+#Output function sigmoid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PREDICTIONS
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 
