@@ -2,6 +2,10 @@
 
  My personal journey into Learning Machine Learning.
 
+ * Second course: 
+ Deep Learning A-Z 
+ (from Udemy: https://www.superdatascience.com/deep-learning/)
+
  * First course: 
  Machine Learning A-Z 
  (from Udemy: https://www.superdatascience.com/machine-learning/)
